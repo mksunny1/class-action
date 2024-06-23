@@ -1,0 +1,44 @@
+{
+  "name": "class-action",
+  "version": "1.0.0",
+  "description": "A simple library for writing composable functions and methods",
+  "main": "src/class-action.js",
+  "files": [
+    "dist/*"
+  ],
+  "type": "module",
+  "types": "./dist/class-action.d.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/class-action.js"
+    }
+  },
+  "scripts": {
+    "test": "node --test",
+    "doc": "npx typedoc --plugin typedoc-plugin-markdown --out ./docs/api ./src/*.ts",
+    "build": "npx tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mksunny1/class-action.git"
+  },
+  "keywords": [
+    "class-action",
+    "JavaScript",
+    "function",
+    "method",
+    "composable",
+    "meta-programming"
+  ],
+  "author": "Mark Sun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mksunny1/class-action/issues"
+  },
+  "homepage": "https://github.com/mksunny1/class-action#readme",
+  "devDependencies": {
+    "typedoc": "^0.26.1",
+    "typedoc-plugin-markdown": "^4.1.0",
+    "typescript": "^5.5.2"
+  }
+}
