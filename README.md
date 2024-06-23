@@ -73,7 +73,7 @@ This library exports a single class with a very simple API which can be picked u
 
 ## Contributing
 
-If you want to improve class-action, contribute to this project. You can contribute in many areas. See the [contributing guidelines](./CONTRIBUTING.md). You can also show your support by sponsoring us.
+Help improve Class-action by contributing to this project. You can contribute in many ways. See the [contributing guidelines](./CONTRIBUTING.md). You can also show your support by sponsoring us.
 
 [![](https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=S2ZW3RJSDHASW)
 
