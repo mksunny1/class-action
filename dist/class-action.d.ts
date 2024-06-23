@@ -194,3 +194,4 @@ export declare class ClassAction<T> {
      */
     removeReaction(reaction: ClassAction<any>): void;
 }
+//# sourceMappingURL=class-action.d.ts.map
