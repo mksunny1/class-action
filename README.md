@@ -68,7 +68,7 @@ console.log(myContext);   // prints 40
 
 ## Documentation
 
-This library exports a single class with a very simple API which can be picked up in a few minutes [here](./docs//api/classes/ClassAction.md).
+This library exports a single class with a very simple API which can be picked up in a few minutes [here](./docs/api/classes/ClassAction.md).
 
 
 ## Contributing

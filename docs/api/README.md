@@ -10,38 +10,61 @@ A class action is simply an object with a local action method and an optional li
 
 ## Installation
 
-You can install class-action in 2 ways:
+You can get class-action in 3 ways:
 
-### Direct download
+### CDN (GitHub Pages)
 
-Download or clone the repository. It contains both JavaScript and TypeScript files.
+No installation required. 
 
 ### NPM
 
 `npm i class-action`
 
-## Usage
-
-Depending on how you bring class-action into your app, there may be subtle differences in how to import the libraries:
-
 ### Direct download
 
+Download or clone the repository. 
+
+## Usage
+
+### Import from a CDN
 ```js
-import { ClassAction } from "./class-action/dist/class-action.js";
+import { ClassAction } from "mksunny1.github.io/class-action/dist/class-action.js";
 ```
 
-```ts
-import { ClassAction } from "./class-action/src/class-action";
-```
-
-### NPM
+### Import from node_modules
 
 ```js
 import { ClassAction } from "class-action";
 ```
 
-```ts
-import { ClassAction } from "class-action";
+### Import from a local directory
+
+```js
+import { ClassAction } from "/class-action/dist/class-action.js";
+```
+
+### Create a class action.
+
+```js
+class MyClassAction extends ClassAction {
+    constructor(value, ...reactions) {
+        super(...reactions);
+        this.value = value;
+    }
+    doAction(context) {
+        context.value = (context.value || 0) + this.value;
+    }
+}
+
+const myClassAction = new MyClassAction(5, new MyClassAction(2), new MyClassAction(7));
+const context = { };
+myClassAction.act(myContext);
+console.log(myContext);   // prints 14
+myClassAction.act(myContext);
+console.log(myContext);   // prints 28
+myClassAction.reactions.splice(0, 1);
+myClassAction.act(myContext);
+console.log(myContext);   // prints 40
 ```
 
 ## Documentation
@@ -50,9 +73,11 @@ This library exports a single class with a very simple API which can be picked u
 
 ## Contributing
 
-If you want to improve class-action, contribute to this project. You can contribute in many areas. See the [contribution guidelines](). You can also show your support by sponsoring us.
+Help improve Class-action by contributing to this project. You can contribute in many ways. See the [contributing guidelines](). You can also show your support by sponsoring us.
 
 [![](https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=S2ZW3RJSDHASW)
+
+Thank you for contributing.
 
 ## Sponsors
 

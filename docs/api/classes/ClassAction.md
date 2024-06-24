@@ -56,7 +56,7 @@ const classAction = new ClassAction()
 
 #### Defined in
 
-class-action.ts:67
+[class-action.ts:67](https://github.com/mksunny1/class-action/blob/99e9dbff5e20c254b0433d21d21fcbb4bdbd7f51/src/class-action.ts#L67)
 
 ## Properties
 
@@ -78,7 +78,7 @@ const myClassAction = new ClassAction(reaction1, reaction2);
 
 #### Defined in
 
-class-action.ts:56
+[class-action.ts:56](https://github.com/mksunny1/class-action/blob/99e9dbff5e20c254b0433d21d21fcbb4bdbd7f51/src/class-action.ts#L56)
 
 ***
 
@@ -105,7 +105,7 @@ const myClassAction2 = new MyClassAction();
 
 #### Defined in
 
-class-action.ts:43
+[class-action.ts:43](https://github.com/mksunny1/class-action/blob/99e9dbff5e20c254b0433d21d21fcbb4bdbd7f51/src/class-action.ts#L43)
 
 ## Methods
 
@@ -139,7 +139,7 @@ myClassAction.act({ msg: 'nice work' });
 
 #### Defined in
 
-class-action.ts:142
+[class-action.ts:145](https://github.com/mksunny1/class-action/blob/99e9dbff5e20c254b0433d21d21fcbb4bdbd7f51/src/class-action.ts#L145)
 
 ***
 
@@ -175,7 +175,7 @@ myClassAction.act()
 
 #### Defined in
 
-class-action.ts:204
+[class-action.ts:207](https://github.com/mksunny1/class-action/blob/99e9dbff5e20c254b0433d21d21fcbb4bdbd7f51/src/class-action.ts#L207)
 
 ***
 
@@ -209,7 +209,7 @@ myClassAction.doAction({ msg: 'nice work' });
 
 #### Defined in
 
-class-action.ts:162
+[class-action.ts:165](https://github.com/mksunny1/class-action/blob/99e9dbff5e20c254b0433d21d21fcbb4bdbd7f51/src/class-action.ts#L165)
 
 ***
 
@@ -243,7 +243,7 @@ myClassAction.doReactions({ msg: 'nice work' });
 
 #### Defined in
 
-class-action.ts:181
+[class-action.ts:184](https://github.com/mksunny1/class-action/blob/99e9dbff5e20c254b0433d21d21fcbb4bdbd7f51/src/class-action.ts#L184)
 
 ***
 
@@ -277,7 +277,7 @@ myClassAction.getAllReactions();
 
 #### Defined in
 
-class-action.ts:123
+[class-action.ts:126](https://github.com/mksunny1/class-action/blob/99e9dbff5e20c254b0433d21d21fcbb4bdbd7f51/src/class-action.ts#L126)
 
 ***
 
@@ -307,7 +307,7 @@ myClassAction.getReactions();
 
 #### Defined in
 
-class-action.ts:104
+[class-action.ts:104](https://github.com/mksunny1/class-action/blob/99e9dbff5e20c254b0433d21d21fcbb4bdbd7f51/src/class-action.ts#L104)
 
 ***
 
@@ -336,7 +336,7 @@ myClassAction.removeReaction(reaction2);
 
 #### Defined in
 
-class-action.ts:220
+[class-action.ts:223](https://github.com/mksunny1/class-action/blob/99e9dbff5e20c254b0433d21d21fcbb4bdbd7f51/src/class-action.ts#L223)
 
 ***
 
@@ -374,4 +374,4 @@ MyClassAction.getReactions();
 
 #### Defined in
 
-class-action.ts:89
+[class-action.ts:89](https://github.com/mksunny1/class-action/blob/99e9dbff5e20c254b0433d21d21fcbb4bdbd7f51/src/class-action.ts#L89)
