@@ -5,7 +5,8 @@
     "moduleResolution": "Bundler",
     "declaration": true,
     "outDir": "dist",
-    "declarationMap": true
+    "declarationMap": true,
+    "useDefineForClassFields": false
   },
   "include": [ "src/*.ts" ]
 }

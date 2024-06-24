@@ -66,7 +66,7 @@ export class ClassAction<T> {
      */
     constructor(...reactions: ClassAction<any>[]) {
         if (reactions.length) {
-            if (!this.reactions) this.reactions = reactions;
+            if (!(this.hasOwnProperty('reactions'))) this.reactions = reactions;
             else this.reactions.push(...reactions);
         }
     }
@@ -101,7 +101,10 @@ export class ClassAction<T> {
      * @param context 
      * @returns 
      */
-    getReactions(context?: T) { return this.reactions || [] }
+    getReactions(context?: T) { 
+        if (!(this.hasOwnProperty('reactions'))) return []
+        else return this.reactions
+    }
 
     /**
      * Gets all class and instance reactions. This is used internally 
@@ -202,7 +205,7 @@ export class ClassAction<T> {
      * @param reactions 
      */
     addReactions(...reactions: ClassAction<any>[]) {
-        if (!this.reactions) this.reactions = [];
+        if (!(this.hasOwnProperty('reactions'))) this.reactions = [];
         this.reactions.push(...reactions);
     }
 
@@ -218,7 +221,7 @@ export class ClassAction<T> {
      * @param reaction 
      */
     removeReaction(reaction: ClassAction<any>) {
-        if (!this.reactions) return;
+        if (!(this.hasOwnProperty('reactions'))) return;
         this.reactions.splice(this.reactions.indexOf(reaction), 1);
     }
 }

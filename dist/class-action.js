@@ -25,35 +25,6 @@
  */
 export class ClassAction {
     /**
-     * Static reactions. These will be associated with all class-action
-     * instances created with the same class without being present on
-     * every instance. In most cases, such actions should be stateless,
-     * though you may deliberately want to share state in some scenarios.
-     *
-     * @example
-     * import { ClassAction } from 'class-action'
-     * const reaction1 = new ClassAction(), reaction2 = new ClassAction();
-     * class MyClassAction extends ClassAction {
-     *    static reactions = [reaction1, reaction2]
-     * }
-     * const myClassAction1 = new MyClassAction();
-     * const myClassAction2 = new MyClassAction();
-     *
-     */
-    static reactions;
-    /**
-     * Instance reactions. These are reactions added to every class-action
-     * instance. They may be necessary when they require internal state that
-     * differ between instances.
-     *
-     * @example
-     * import { ClassAction } from 'class-action'
-     * const reaction1 = new ClassAction(), reaction2 = new ClassAction();
-     * const myClassAction = new ClassAction(reaction1, reaction2);
-     *
-     */
-    reactions;
-    /**
      * Creates a new ClassAction object containing the optionally provided reactions.
      *
      * @example
@@ -64,7 +35,7 @@ export class ClassAction {
      */
     constructor(...reactions) {
         if (reactions.length) {
-            if (!this.reactions)
+            if (!(this.hasOwnProperty('reactions')))
                 this.reactions = reactions;
             else
                 this.reactions.push(...reactions);
@@ -100,7 +71,12 @@ export class ClassAction {
      * @param context
      * @returns
      */
-    getReactions(context) { return this.reactions || []; }
+    getReactions(context) {
+        if (!(this.hasOwnProperty('reactions')))
+            return [];
+        else
+            return this.reactions;
+    }
     /**
      * Gets all class and instance reactions. This is used internally
      * to obtain all reactions to trigger after the local action has
@@ -199,7 +175,7 @@ export class ClassAction {
      * @param reactions
      */
     addReactions(...reactions) {
-        if (!this.reactions)
+        if (!(this.hasOwnProperty('reactions')))
             this.reactions = [];
         this.reactions.push(...reactions);
     }
@@ -215,7 +191,7 @@ export class ClassAction {
      * @param reaction
      */
     removeReaction(reaction) {
-        if (!this.reactions)
+        if (!(this.hasOwnProperty('reactions')))
             return;
         this.reactions.splice(this.reactions.indexOf(reaction), 1);
     }

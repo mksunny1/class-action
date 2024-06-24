@@ -6,8 +6,7 @@ describe('ClassAction.constructor', async (t) => {
     await it('Should construct a valid ClassAction', (t) => {
         const classAction = new ClassAction();
         assert.equal(classAction instanceof ClassAction, true);
-        assert.deepEqual(Object.keys(classAction), ['reactions']);
-        assert.deepEqual(classAction.reactions, undefined);
+        assert.deepEqual(Object.keys(classAction), []);
     });
 
     await it('Should construct a ClassAction containing the given reactions', (t) => {
