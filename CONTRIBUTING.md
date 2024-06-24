@@ -22,7 +22,7 @@ To get an overview of the project, read the [README](./README.md) file. Here are
 
 You can contribute to Class-action in many ways. Some of them don't even require writing a single line of code :sparkles:. These are just some of the ideas that scream to mind, in no particular order:
 
-- Partake in project discussions. We want talk about this, both formally and casually, to increase awareness about all aspects of this project for all of us and to build community and support. You can start or join discussions directly on this repo. We like to be efficient, it is easier to discuss directly [here](https://github.com/mksunny1/class-action/discussions).
+- Partake in project discussions. We want talk about this, both formally and casually, to increase awareness about all aspects of this project for all of us and to build community and support. You can start or join discussions [here](https://github.com/mksunny1/class-action/discussions).
 
 - Find or fix issues. When projects gain traction, many issues get discovered as it gets utilized in previously unforeseen scenarios. These will need to be considered and hopefully resolved to ensure the project continues to meet the needs of those that rely on it in their work. You will find many opportunities to contribute here simply by using ClassAction or visiting the [issues](https://github.com/mksunny1/class-action/issues) page.
 
