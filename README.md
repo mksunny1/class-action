@@ -7,43 +7,13 @@ A class action is simply an object with a local action method and an optional li
 
 ## Installation
 
-You can get class-action in 3 ways:
-
-### CDN (GitHub Pages)
-
-No installation required. 
-
-### NPM
-
 `npm i class-action`
-
-### Direct download
-
-Download or clone the repository. 
 
 
 ## Usage
 
-### Import from a CDN
-```js
-import { ClassAction } from "mksunny1.github.io/class-action/dist/class-action.js";
-```
-
-### Import from node_modules
-
 ```js
 import { ClassAction } from "class-action";
-```
-
-### Import from a local directory
-
-```js
-import { ClassAction } from "/class-action/dist/class-action.js";
-```
-
-### Create a class action.
-
-```js
 class MyClassAction extends ClassAction {
     constructor(value, ...reactions) {
         super(...reactions);
