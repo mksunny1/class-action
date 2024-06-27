@@ -57,7 +57,12 @@ export class ClassAction {
      *
      * @returns
      */
-    static getReactions(context) { return this.reactions || []; }
+    static getReactions(context) {
+        if (!(this.hasOwnProperty('reactions')))
+            return [];
+        else
+            return this.reactions;
+    }
     /**
      * Returns all instance reactions of this ClassAction.
      * By default it simply returns {@link ClassAction#reactions}.
@@ -71,11 +76,17 @@ export class ClassAction {
      * @param context
      * @returns
      */
-    getReactions(context) {
-        if (!(this.hasOwnProperty('reactions')))
-            return [];
-        else
-            return this.reactions;
+    *getReactions(context) {
+        if (this.hasOwnProperty('reactions')) {
+            for (let reaction of this.reactions)
+                yield reaction;
+        }
+        if (this.hasOwnProperty('keyedReactions')) {
+            let reaction;
+            for (let reactions of Object.values(this.keyedReactions))
+                for (reaction of reactions)
+                    yield reaction;
+        }
     }
     /**
      * Gets all class and instance reactions. This is used internally
@@ -94,9 +105,11 @@ export class ClassAction {
      * @param context
      * @returns
      */
-    getAllReactions(context) {
-        const result = this.constructor.getReactions(context);
-        return [result, this.getReactions(context)].flat();
+    *getAllReactions(context) {
+        for (let reaction of this.constructor.getReactions(context))
+            yield reaction;
+        for (let reaction of this.getReactions(context))
+            yield reaction;
     }
     /**
      * Performs the local action and triggers all reactions.
@@ -180,19 +193,46 @@ export class ClassAction {
         this.reactions.push(...reactions);
     }
     /**
-     * Removes the specified reaction.
+     * Adds the given reactions to the list of reactions with the key.
+     *
+     * @param key
+     * @param reactions
+     */
+    addKeyedReactions(key, ...reactions) {
+        if (!(this.hasOwnProperty('keyedReactions')))
+            this.keyedReactions = {};
+        if (!(this.keyedReactions.hasOwnProperty(key)))
+            this.keyedReactions[key] = [];
+        this.keyedReactions[key].push(...reactions);
+    }
+    /**
+     * Removes the specified reactions.
      *
      * @example
      * import { ClassAction } from 'class-action'
      * const reaction1 = new ClassAction(), reaction2 = new ClassAction();
      * const myClassAction = new ClassAction(reaction1, reaction2);
-     * myClassAction.removeReaction(reaction2);
+     * myClassAction.removeReactions(reaction2);
      *
      * @param reaction
      */
-    removeReaction(reaction) {
+    removeReactions(...reactions) {
         if (!(this.hasOwnProperty('reactions')))
             return;
-        this.reactions.splice(this.reactions.indexOf(reaction), 1);
+        for (let reaction of reactions) {
+            this.reactions.splice(this.reactions.indexOf(reaction), 1);
+        }
+    }
+    /**
+     * Removes the reactions with the specified keys.
+     *
+     * @param keys
+     * @returns
+     */
+    removeKeyedReactions(...keys) {
+        if (!(this.hasOwnProperty('keyedReactions')))
+            return;
+        for (let key of keys)
+            delete this.keyedReactions[key];
     }
 }

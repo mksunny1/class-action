@@ -54,11 +54,11 @@ describe('ClassAction#getReactions', async (t) => {
     await it('Should return all instance reactions if present ', (t) => {
         const reaction1 = new ClassAction(), reaction2 = new ClassAction();
         const classAction = new ClassAction(reaction1, reaction2);
-        assert.deepEqual(classAction.getReactions(), [reaction1, reaction2]);
+        assert.deepEqual([...classAction.getReactions()], [reaction1, reaction2]);
     });
     await it('Should return an empty arry if there are no instance reactions ', (t) => {
         const classAction = new ClassAction();
-        assert.deepEqual(classAction.getReactions(), []);
+        assert.deepEqual([...classAction.getReactions()], []);
     });
 });
 
@@ -69,7 +69,7 @@ describe('ClassAction#getAllReactions', async (t) => {
             static reactions = [reaction1, reaction2]
         }
         const classAction = new MyClassAction(reaction1, reaction2);
-        assert.deepEqual(classAction.getAllReactions(), [reaction1, reaction2, reaction1, reaction2]);
+        assert.deepEqual([...classAction.getAllReactions()], [reaction1, reaction2, reaction1, reaction2]);
     });
 });
 
@@ -128,12 +128,37 @@ describe('ClassAction.addReactions', async (t) => {
     });
 });
 
-describe('ClassAction.removeReaction', async (t) => {
+describe('ClassAction.addKeyedReactions', async (t) => {
+    await it('Should add all specified reactions ', (t) => {
+        const reaction1 = new ClassAction(), reaction2 = new ClassAction();
+        const classAction = new ClassAction(reaction1, reaction2);
+        assert.deepEqual(classAction.keyedReactions, undefined);
+        classAction.addKeyedReactions('k', reaction2, reaction2);
+        assert.deepEqual(classAction.keyedReactions, { k: [reaction2, reaction2] });
+        assert.deepEqual([...classAction.getAllReactions()], [reaction1, reaction2, reaction2, reaction2]);
+    });
+});
+
+describe('ClassAction.removeReactions', async (t) => {
     await it('Should remove the specified reaction ', (t) => {
         const reaction1 = new ClassAction(), reaction2 = new ClassAction();
         const classAction = new ClassAction(reaction1, reaction2);
         assert.deepEqual(classAction.reactions, [reaction1, reaction2]);
-        classAction.removeReaction(reaction2);
+        classAction.removeReactions(reaction2);
         assert.deepEqual(classAction.reactions, [reaction1]);
+    });
+});
+
+describe('ClassAction.removeKeyedReactions', async (t) => {
+    await it('Should remove the specified reaction ', (t) => {
+        const reaction1 = new ClassAction(), reaction2 = new ClassAction();
+        const classAction = new ClassAction(reaction1, reaction2);
+        classAction.addKeyedReactions('k', reaction2, reaction2);
+        assert.deepEqual(classAction.keyedReactions, { k: [reaction2, reaction2] });
+        assert.deepEqual([...classAction.getAllReactions()], [reaction1, reaction2, reaction2, reaction2]);
+        classAction.removeKeyedReactions('k');
+        assert.deepEqual(classAction.keyedReactions, {  });
+        assert.deepEqual([...classAction.getAllReactions()], [reaction1, reaction2]);
+        
     });
 });

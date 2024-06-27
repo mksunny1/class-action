@@ -1,3 +1,5 @@
+export type IKey = string | number | symbol;
+
 /**
  * An object which can produce an effect and trigger all its reactions 
  * to produce theirs. It enables a form of metaprogramming where we 
@@ -54,6 +56,7 @@ export class ClassAction<T> {
      * 
      */
     reactions?: ClassAction<any>[]
+    keyedReactions?: {[key: IKey]: ClassAction<any>[]}
     
     /**
      * Creates a new ClassAction object containing the optionally provided reactions.
@@ -86,7 +89,10 @@ export class ClassAction<T> {
      * 
      * @returns 
      */
-    static getReactions<T>(context?: T) { return this.reactions || [] }
+    static getReactions<T>(context?: T) { 
+        if (!(this.hasOwnProperty('reactions'))) return []
+        else return this.reactions
+    }
 
     /**
      * Returns all instance reactions of this ClassAction.
@@ -101,9 +107,14 @@ export class ClassAction<T> {
      * @param context 
      * @returns 
      */
-    getReactions(context?: T) { 
-        if (!(this.hasOwnProperty('reactions'))) return []
-        else return this.reactions
+    *getReactions(context?: T) { 
+        if (this.hasOwnProperty('reactions')) {
+            for (let reaction of this.reactions) yield reaction;
+        }
+        if (this.hasOwnProperty('keyedReactions')) {
+            let reaction: ClassAction<any>;
+            for (let reactions of Object.values(this.keyedReactions)) for (reaction of reactions) yield reaction;
+        }
     }
 
     /**
@@ -123,9 +134,9 @@ export class ClassAction<T> {
      * @param context 
      * @returns 
      */
-    getAllReactions(context?: T) {
-        const result = (<typeof ClassAction>this.constructor).getReactions(context);
-        return [result, this.getReactions(context)].flat();
+    *getAllReactions(context?: T) {
+        for (let reaction of (<typeof ClassAction>this.constructor).getReactions(context)) yield reaction;
+        for (let reaction of this.getReactions(context)) yield reaction;
     }
     /**
      * Performs the local action and triggers all reactions.
@@ -208,20 +219,43 @@ export class ClassAction<T> {
         if (!(this.hasOwnProperty('reactions'))) this.reactions = [];
         this.reactions.push(...reactions);
     }
+    /**
+     * Adds the given reactions to the list of reactions with the key.
+     * 
+     * @param key 
+     * @param reactions 
+     */
+    addKeyedReactions(key: IKey, ...reactions: ClassAction<any>[]) {
+        if (!(this.hasOwnProperty('keyedReactions'))) this.keyedReactions = {};
+        if (!(this.keyedReactions.hasOwnProperty(key))) this.keyedReactions[key] = [];
+        this.keyedReactions[key].push(...reactions);
+    }
 
     /**
-     * Removes the specified reaction.
+     * Removes the specified reactions.
      * 
      * @example
      * import { ClassAction } from 'class-action'
      * const reaction1 = new ClassAction(), reaction2 = new ClassAction();
      * const myClassAction = new ClassAction(reaction1, reaction2);
-     * myClassAction.removeReaction(reaction2);
+     * myClassAction.removeReactions(reaction2);
      * 
      * @param reaction 
      */
-    removeReaction(reaction: ClassAction<any>) {
+    removeReactions(...reactions: ClassAction<any>[]) {
         if (!(this.hasOwnProperty('reactions'))) return;
-        this.reactions.splice(this.reactions.indexOf(reaction), 1);
+        for (let reaction of reactions) {
+            this.reactions.splice(this.reactions.indexOf(reaction), 1);
+        }
+    }
+    /**
+     * Removes the reactions with the specified keys.
+     * 
+     * @param keys 
+     * @returns 
+     */
+    removeKeyedReactions(...keys: IKey[]) {
+        if (!(this.hasOwnProperty('keyedReactions'))) return;
+        for (let key of keys) delete this.keyedReactions[key];
     }
 }

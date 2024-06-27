@@ -1,3 +1,4 @@
+export type IKey = string | number | symbol;
 /**
  * An object which can produce an effect and trigger all its reactions
  * to produce theirs. It enables a form of metaprogramming where we
@@ -53,6 +54,9 @@ export declare class ClassAction<T> {
      *
      */
     reactions?: ClassAction<any>[];
+    keyedReactions?: {
+        [key: IKey]: ClassAction<any>[];
+    };
     /**
      * Creates a new ClassAction object containing the optionally provided reactions.
      *
@@ -93,7 +97,7 @@ export declare class ClassAction<T> {
      * @param context
      * @returns
      */
-    getReactions(context?: T): ClassAction<any>[];
+    getReactions(context?: T): Generator<ClassAction<any>, void, unknown>;
     /**
      * Gets all class and instance reactions. This is used internally
      * to obtain all reactions to trigger after the local action has
@@ -111,7 +115,7 @@ export declare class ClassAction<T> {
      * @param context
      * @returns
      */
-    getAllReactions(context?: T): ClassAction<any>[];
+    getAllReactions(context?: T): Generator<ClassAction<any>, void, unknown>;
     /**
      * Performs the local action and triggers all reactions.
      *
@@ -182,16 +186,30 @@ export declare class ClassAction<T> {
      */
     addReactions(...reactions: ClassAction<any>[]): void;
     /**
-     * Removes the specified reaction.
+     * Adds the given reactions to the list of reactions with the key.
+     *
+     * @param key
+     * @param reactions
+     */
+    addKeyedReactions(key: IKey, ...reactions: ClassAction<any>[]): void;
+    /**
+     * Removes the specified reactions.
      *
      * @example
      * import { ClassAction } from 'class-action'
      * const reaction1 = new ClassAction(), reaction2 = new ClassAction();
      * const myClassAction = new ClassAction(reaction1, reaction2);
-     * myClassAction.removeReaction(reaction2);
+     * myClassAction.removeReactions(reaction2);
      *
      * @param reaction
      */
-    removeReaction(reaction: ClassAction<any>): void;
+    removeReactions(...reactions: ClassAction<any>[]): void;
+    /**
+     * Removes the reactions with the specified keys.
+     *
+     * @param keys
+     * @returns
+     */
+    removeKeyedReactions(...keys: IKey[]): void;
 }
 //# sourceMappingURL=class-action.d.ts.map
