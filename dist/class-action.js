@@ -214,7 +214,7 @@ export class ClassAction {
      * const myClassAction = new ClassAction(reaction1, reaction2);
      * myClassAction.removeReactions(reaction2);
      *
-     * @param reaction
+     * @param reactions
      */
     removeReactions(...reactions) {
         if (!(this.hasOwnProperty('reactions')))

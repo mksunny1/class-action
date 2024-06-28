@@ -2,7 +2,7 @@
 
 This is a simple library for creating composable functions. It helps to create methods or functions that may need to be modified later without introducing performance issues from multiple code compilation. 
 
-A class action is simply an object with a local action method and an optional list of reaction objects which are also `ClassAction` instances. Not only can reactions be added or removed later and nested to any depth, but the classes can be extended and composed freely to achieve whatever effect we want. We have used class-action as the primary abstraction for implementing a transparent and extensible reactivity system in [action-component](https://github.com/mksunny1/action-component).
+A class action is simply an object with a local action method and an optional list of reaction objects which are also `ClassAction` instances. Not only can reactions be added or removed later and nested to any depth, but the classes can be extended and composed freely to achieve whatever effect we want. We have used class-action as the primary abstraction for implementing a transparent and extensible reactivity system in [active-component](https://github.com/mksunny1/active-component).
 
 
 ## Installation

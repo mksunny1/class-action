@@ -1,6 +1,6 @@
 {
   "name": "class-action",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A simple library for writing composable functions and methods",
   "main": "dist/class-action.js",
   "files": [

@@ -201,7 +201,7 @@ export declare class ClassAction<T> {
      * const myClassAction = new ClassAction(reaction1, reaction2);
      * myClassAction.removeReactions(reaction2);
      *
-     * @param reaction
+     * @param reactions
      */
     removeReactions(...reactions: ClassAction<any>[]): void;
     /**
