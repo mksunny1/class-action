@@ -222,13 +222,13 @@ export class ClassAction<T> {
     /**
      * Adds the given reactions to the list of reactions with the key.
      * 
-     * @param key 
+     * @param reactionKey 
      * @param reactions 
      */
-    addKeyedReactions(key: IKey, ...reactions: ClassAction<any>[]) {
+    addKeyedReactions(reactionKey: IKey, ...reactions: ClassAction<any>[]) {
         if (!(this.hasOwnProperty('keyedReactions'))) this.keyedReactions = {};
-        if (!(this.keyedReactions.hasOwnProperty(key))) this.keyedReactions[key] = [];
-        this.keyedReactions[key].push(...reactions);
+        if (!(this.keyedReactions.hasOwnProperty(reactionKey))) this.keyedReactions[reactionKey] = [];
+        this.keyedReactions[reactionKey].push(...reactions);
     }
 
     /**
@@ -251,11 +251,11 @@ export class ClassAction<T> {
     /**
      * Removes the reactions with the specified keys.
      * 
-     * @param keys 
+     * @param reactionKeys 
      * @returns 
      */
-    removeKeyedReactions(...keys: IKey[]) {
+    removeKeyedReactions(...reactionKeys: IKey[]) {
         if (!(this.hasOwnProperty('keyedReactions'))) return;
-        for (let key of keys) delete this.keyedReactions[key];
+        for (let key of reactionKeys) delete this.keyedReactions[key];
     }
 }

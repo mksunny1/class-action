@@ -188,10 +188,10 @@ export declare class ClassAction<T> {
     /**
      * Adds the given reactions to the list of reactions with the key.
      *
-     * @param key
+     * @param reactionKey
      * @param reactions
      */
-    addKeyedReactions(key: IKey, ...reactions: ClassAction<any>[]): void;
+    addKeyedReactions(reactionKey: IKey, ...reactions: ClassAction<any>[]): void;
     /**
      * Removes the specified reactions.
      *
@@ -207,9 +207,9 @@ export declare class ClassAction<T> {
     /**
      * Removes the reactions with the specified keys.
      *
-     * @param keys
+     * @param reactionKeys
      * @returns
      */
-    removeKeyedReactions(...keys: IKey[]): void;
+    removeKeyedReactions(...reactionKeys: IKey[]): void;
 }
 //# sourceMappingURL=class-action.d.ts.map
