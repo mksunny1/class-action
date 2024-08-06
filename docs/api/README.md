@@ -27,14 +27,14 @@ class MyClassAction extends ClassAction {
 }
 
 const myClassAction = new MyClassAction(5, new MyClassAction(2), new MyClassAction(7));
-const context = { };
+const myContext = { };
 myClassAction.act(myContext);
 console.log(myContext);   // prints 14
 myClassAction.act(myContext);
 console.log(myContext);   // prints 28
 myClassAction.reactions.splice(0, 1);
 myClassAction.act(myContext);
-console.log(myContext);   // prints 40
+console.log(myContext.value);   // prints 40
 ```
 
 ## Documentation
