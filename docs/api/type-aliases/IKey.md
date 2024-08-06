@@ -10,4 +10,4 @@
 
 ## Defined in
 
-[class-action.ts:1](https://github.com/mksunny1/class-action/blob/f12a01b525d347d7933b1567d7371e16fbe23b73/src/class-action.ts#L1)
+[class-action.ts:1](https://github.com/mksunny1/class-action/blob/db7b18e86a41aa6bac95a138e91cdd6aaab7589b/src/class-action.ts#L1)
